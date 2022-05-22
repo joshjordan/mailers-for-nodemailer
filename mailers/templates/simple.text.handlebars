@@ -1,0 +1,9 @@
+{{! Instructions: nothing to do here unless you want to customize the template }}
+{{! This template renders a very simple email with a paragraph body and optionally a link }}
+{{! content: string -- the main paragraph text }}
+{{! link: { path: string -- the path to link to, labe: string -- the preceding text e.g. "Visit this link" } }}
+{{ content }}
+{{#if link }}
+
+{{link.label}}: {{url link.path}}
+{{/if}}

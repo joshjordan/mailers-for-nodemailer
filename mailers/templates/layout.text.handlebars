@@ -1,0 +1,18 @@
+{{! This file is the "wrapper", or boilerplate text around your content. }}
+{{! Instructions: replace this with your own email template layout }}
+{{!   then, extract the content into other templates. }}
+{{!   where the content should be, put this code: {{> (textPartial templateName) }} }}
+
+**
+Hi{{#if toUser.firstName}}, {{toUser.firstName}}{{/if}}.
+
+Forgot Your Password?
+---------------------
+{{> (textPartial templateName) }}
+
+----------------{{#if config.socialLinks}}
+** Facebook (#)
+** Instagram (#)
+** Twitter (#)
+** YouTube (#)
+** LinkedIn (#){{/if}}
