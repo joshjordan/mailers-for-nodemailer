@@ -72,20 +72,15 @@ class BaseMailer {
     const addresses: AddressParam[] = Array.isArray(address) ? address : [address];
 
     return addresses.map(a => {
-      // if already an Address, as indicated by 'address' and 'name' property,
-      // just return. This is the method used by the Postmark transport
-      const mailAddress = a as Mail.Address;
-      if(mailAddress.address && mailAddress.name) return mailAddress;
-      if(mailAddress.address) return mailAddress.address; // corner case -- fall back to string
-
       // if a User, as indicated by 'email' property, transform to Address
       const user = a as UserType;
-      if(user.getFullName && user.email) {
-        return { name: user.getFullName(), address: user.email } as Mail.Address
+      if(user.email) {
+        return user.getFullName ?
+          { name: user.getFullName(), address: user.email } as Mail.Address :
+          { address: user.email } as Mail.Address;
       };
 
-      // else, we must have a string
-      return a as string;
+      return a as string | Mail.Address;
     })
   }
 }
